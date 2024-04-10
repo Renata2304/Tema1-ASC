@@ -101,15 +101,14 @@ class TaskRunner(Thread):
         s = 0
         count = 0
         for line in val:
-            if line['Question'] == task.question:
+            if line['Question'] == task.question['question']:
                 s += float(line['Data_Value'])
                 count += 1
         
         if task.url == '/api/global_mean':
             self.jobs[task.task_id] = {'status': 'done', 'data': {"global_mean": s / count}}
-
-        avg = s / count
-        return avg
+        else:
+            return s / count
     
     def calculate_worst5(self, task):
         val = task.data_value.data
@@ -181,7 +180,7 @@ class TaskRunner(Thread):
 
         # Accumulate data for each state
         for line in val:
-            if line['Question'] == task.question:
+            if line['Question'] == task.question['question']:
                 state = line['LocationDesc']
                 data_val = float(line['Data_Value'])
                 if state not in finished_data:
@@ -215,9 +214,8 @@ class TaskRunner(Thread):
         
         if task.url == '/api/state_mean':
             self.jobs[task.task_id] = {'status': 'done', 'data': {state: s / count}}
-
-        avg = s / count
-        return avg
+        else: 
+            return s / count
 
     def calculate_diff_from_mean(self, task):
         # Calculate states mean
@@ -237,11 +235,12 @@ class TaskRunner(Thread):
         self.jobs[task.task_id] = {'status': 'done', 'data': sorted_avg}
 
     def calculate_state_diff_from_mean(self, task):
+        state = task.question['state']
         glb_mean = self.calculate_global_mean(task)
         st_mean = self.calculate_state_mean(task)
         avg = glb_mean - st_mean
 
-        self.jobs[task.task_id] = {'status': 'done', 'data': {task.question['state']: avg}}
+        self.jobs[task.task_id] = {'status': 'done', 'data': {state: avg}}
 
     def calculate_mean_by_category(self, task):
         pass

@@ -53,7 +53,7 @@ def states_mean_request():
     job_id = webserver.job_counter
 
     # Register job. Don't wait for task to finish
-    task = Task(job_id, 'running', data['question'], '/api/states_mean', webserver.data_ingestor)
+    task = Task(job_id, 'running', data, '/api/states_mean', webserver.data_ingestor)
     webserver.tasks_runner.submit_task(task)
 
     # Return associated job_id
@@ -124,7 +124,7 @@ def global_mean_request():
     job_id = webserver.job_counter
 
     # Register job. Don't wait for task to finish
-    task = Task(job_id, 'running', data['question'], '/api/global_mean', webserver.data_ingestor.data)
+    task = Task(job_id, 'running', data, '/api/global_mean', webserver.data_ingestor.data)
     webserver.tasks_runner.submit_task(task)
 
     # Return associated job_id
@@ -143,7 +143,7 @@ def diff_from_mean_request():
     job_id = webserver.job_counter
 
     # Register job. Don't wait for task to finish
-    task = Task(job_id, 'running', data['question'], '/api/diff_from_mean', webserver.data_ingestor)
+    task = Task(job_id, 'running', data, '/api/diff_from_mean', webserver.data_ingestor)
     webserver.tasks_runner.submit_task(task)
 
     # Return associated job_id
@@ -162,7 +162,7 @@ def state_diff_from_mean_request():
     job_id = webserver.job_counter
 
     # Register job. Don't wait for task to finish
-    task = Task(job_id, 'running', data['question'], '/api/state_diff_from_mean', webserver.data_ingestor.data)
+    task = Task(job_id, 'running', data, '/api/state_diff_from_mean', webserver.data_ingestor.data)
     webserver.tasks_runner.submit_task(task)
 
     # Return associated job_id
