@@ -32,7 +32,7 @@ def get_response(job_id):
         return jsonify({'status': 'error', 'reason': 'Invalid job_id'})
 
     # Check if job_id is done and return the result
-    if webserver.tasks_runner.jobs[int(job_id)] != "runninng":
+    if webserver.tasks_runner.jobs[int(job_id)] != "running":
         return jsonify(webserver.tasks_runner.jobs[int(job_id)]), 200
     else:
         return jsonify({'status': 'running'}), 200
@@ -200,7 +200,7 @@ def state_mean_by_category_request():
     job_id = webserver.job_counter
 
     # Register job. Don't wait for task to finish
-    task = Task(job_id, 'running', data['question'], '/api/state_mean_by_category', webserver.data_ingestor.data)
+    task = Task(job_id, 'running', data, '/api/state_mean_by_category', webserver.data_ingestor.data)
     webserver.tasks_runner.submit_task(task)
 
     # Return associated job_id

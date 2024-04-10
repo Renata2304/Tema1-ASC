@@ -125,7 +125,6 @@ class TaskRunner(Thread):
                     finished_data[state]['total_value'] += data_val
                     finished_data[state]['count'] += 1
 
-
         for state, data in finished_data.items():
             finished_data[state] = data['total_value'] / data['count']
 
@@ -243,8 +242,55 @@ class TaskRunner(Thread):
         self.jobs[task.task_id] = {'status': 'done', 'data': {state: avg}}
 
     def calculate_mean_by_category(self, task):
-        pass
+        val = task.data_value
+        finished_data = {}
+
+        # Accumulate data for each state
+        for line in val:
+            if line['Question'] == task.question:
+                state = line['LocationDesc']
+                category = line['StratificationCategory1']
+                subcat = line['Stratification1']
+                if category and subcat:
+                    key_val = f"('{state}', '{category}', '{subcat}')"
+                    data_val = float(line['Data_Value'])
+                    if key_val not in finished_data:
+                        finished_data[key_val] = {'total_value': data_val, 'count': 1}
+                    else:
+                        finished_data[key_val]['total_value'] += data_val
+                        finished_data[key_val]['count'] += 1
+
+        # Calculate average for each category
+        for key_val, data in finished_data.items():
+            finished_data[key_val] = data['total_value'] / data['count']
+
+        # Create a dictionary sorted by state in ascending order and average in descending order
+        sorted_avg = {state: avg for state, avg in sorted(finished_data.items(), key=lambda x: (x[0], -x[1]))}
+                    
+        self.jobs[task.task_id] = {'status': 'done', 'data': sorted_avg}
 
     def calculate_state_mean_by_category(self, task):
-        pass
+        state = task.question['state']
+        val = task.data_value
+        finished_data = {}
 
+        # Accumulate data for each state
+        for line in val:
+            if line['Question'] == task.question['question'] and line['LocationDesc'] == state:
+                category = line['StratificationCategory1']
+                subcat = line['Stratification1']
+                key_val = f"('{category}', '{subcat}')"
+                data_val = float(line['Data_Value'])
+                if key_val not in finished_data:
+                    finished_data[key_val] = {'total_value': data_val, 'count': 1}
+                else:
+                    finished_data[key_val]['total_value'] += data_val
+                    finished_data[key_val]['count'] += 1
+
+        # Calculate average for each category
+        for key_val, data in finished_data.items():
+            finished_data[key_val] = data['total_value'] / data['count']
+
+        sorted_avg = {state: avg for state, avg in sorted(finished_data.items(), key=lambda x: (x[0], -x[1]))}
+
+        self.jobs[task.task_id] = {'status': 'done', 'data': {state: sorted_avg}}
