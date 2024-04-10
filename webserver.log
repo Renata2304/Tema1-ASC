@@ -1,0 +1,444 @@
+ERROR:2024-04-10 18:47:06,251:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 49, in graceful_shutdown
+    thread.shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'shutdown'
+ERROR:2024-04-10 18:47:18,817:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 49, in graceful_shutdown
+    thread.shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'shutdown'
+ERROR:2024-04-10 18:49:02,390:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 49, in graceful_shutdown
+    thread.shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'shutdown'
+ERROR:2024-04-10 18:55:49,416:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 18:57:50,106:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 18:57:55,572:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 18:57:55,926:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 18:57:57,731:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 18:57:58,206:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 19:00:15,340:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 19:03:03,349:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 53, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 19:03:27,668:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 207, in shutdown_request
+    os.kill(os.getpid(), signal.SIGINT)
+NameError: name 'signal' is not defined
+ERROR:2024-04-10 19:08:26,420:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    if thread is not current_thread():
+NameError: name 'current_thread' is not defined
+ERROR:2024-04-10 19:15:03,024:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:21:10,401:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:25:25,569:Exception on /api/graceful_shutdown [POST]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:25:59,786:Exception on /api/graceful_shutdown [POST]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:26:33,615:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:41:09,885:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:42:18,385:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:42:19,226:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:42:19,597:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:44:06,553:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:44:40,989:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:46:27,664:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:48:06,266:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 54, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 19:53:34,834:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 20:07:45,594:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 206, in shutdown_request
+    webserver.tasks_runner.graceful_shutdown()
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/task_runner.py", line 52, in graceful_shutdown
+    thread.graceful_shutdown()
+AttributeError: 'TaskRunner' object has no attribute 'graceful_shutdown'
+ERROR:2024-04-10 20:20:22,612:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 208, in shutdown_request
+    for task in webserver.tasks_runner.tsk_queue:
+TypeError: 'Queue' object is not iterable
+ERROR:2024-04-10 20:21:26,927:Exception on /api/graceful_shutdown [GET]
+Traceback (most recent call last):
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 1473, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 882, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/renata23/.local/lib/python3.10/site-packages/flask/app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/mnt/f/Facultate/Anul 3/Semestrul 2/ASC/asc-public/assignments/1-le-stats-sportif/Tema1-ASC/app/routes.py", line 208, in shutdown_request
+    for task in webserver.tasks_runner.tsk_queue:
+TypeError: 'Queue' object is not iterable

@@ -9,7 +9,6 @@ class DataIngestor:
 
         with open(csv_path, 'r') as file:
             csv_reader = csv.DictReader(file)
-            
             # Iterate over each row in the CSV file
             for row in csv_reader:
                 self.data.append(row)
@@ -31,5 +30,3 @@ class DataIngestor:
 
     def get_csv_reader(self):
         return self.csv_reader
-
-#nume = DataIngestor("../nutrition_activity_obesity_usa_subset.csv")

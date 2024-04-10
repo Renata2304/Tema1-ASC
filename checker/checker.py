@@ -127,36 +127,36 @@ class TestAPI(unittest.TestCase):
                 local_score += test_score
         total_score += min(round(local_score), test_suite_score)
 
-    # def test_coding_style(self):
-    #     global total_score
+    def test_coding_style(self):
+        global total_score
 
-    #     python_files = []
-    #     for root, _, files in os.walk("./app"):
-    #         for file in files:
-    #             if file.endswith('.py'):
-    #                 python_files.append(os.path.join(root, file))
+        python_files = []
+        for root, _, files in os.walk("./app"):
+            for file in files:
+                if file.endswith('.py'):
+                    python_files.append(os.path.join(root, file))
 
-    #     stdout = sys.stdout
-    #     sys.stdout = StringIO()
+        stdout = sys.stdout
+        sys.stdout = StringIO()
 
-    #     ARGS = ["-r","n", "--rcfile=./checker/pylintrc"]
-    #     r = pylint.lint.Run(python_files + ARGS, exit=False)
+        ARGS = ["-r","n", "--rcfile=./checker/pylintrc"]
+        r = pylint.lint.Run(python_files + ARGS, exit=False)
 
-    #     test = sys.stdout.getvalue()
-    #     sys.stdout.close()
-    #     sys.stdout = stdout
+        test = sys.stdout.getvalue()
+        sys.stdout.close()
+        sys.stdout = stdout
 
-    #     lint_res = test.split('\n')
-    #     if LOCAL_DEBUG:
-    #         print(test)
+        lint_res = test.split('\n')
+        if LOCAL_DEBUG:
+            print(test)
 
-    #     rating_str = "Your code has been rated at "
-    #     score_line = list(filter(lambda ln: rating_str in ln, lint_res))[0]
-    #     score_str = score_line.split(rating_str)[-1]
-    #     score = float(score_str.split('/')[0])
-    #     print(score_line)
-    #     if score < 8:
-    #         total_score -= 5
+        rating_str = "Your code has been rated at "
+        score_line = list(filter(lambda ln: rating_str in ln, lint_res))[0]
+        score_str = score_line.split(rating_str)[-1]
+        score = float(score_str.split('/')[0])
+        print(score_line)
+        if score < 8:
+            total_score -= 5
 
 if __name__ == '__main__':
     try:
