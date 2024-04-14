@@ -29,4 +29,4 @@ class DataIngestor:
         ]
 
     def get_csv_reader(self):
-        return self.csv_reader
+        return self.data

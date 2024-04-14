@@ -1,5 +1,5 @@
 from queue import Queue
-from threading import Thread, Event, Lock
+from threading import Thread, Event
 import time
 import os
 import multiprocessing
@@ -7,7 +7,7 @@ from collections import defaultdict
 import json
 
 class Task:
-    def __init__(self, task_id, status, question, url, data_value):
+    def __init__(self, task_id, status, question, url, data_value, is_unittesting):
         """
         Implements the new task that will be added to the task queue.
         """
@@ -16,13 +16,15 @@ class Task:
         self.question = question
         self.url = url
         self.data_value = data_value
+        self.is_unittesting = is_unittesting
 
 class ThreadPool:
-    def __init__(self):
+    def __init__(self, webserver):
         self.tsk_queue = Queue()
         self.thr_list = []
         self.jobs = {}
         self.shutdown_flag = Event()
+        self.webserver = webserver
 
         self.num_threads_env = os.getenv('TP_NUM_OF_THREADS')
         if not self.num_threads_env:
@@ -41,16 +43,26 @@ class ThreadPool:
         Starts multiple threads based on the specified number of threads in the environment.
         """
         for _ in range(self.num_threads_env):
-            thread = TaskRunner(self.tsk_queue, self.jobs, self.shutdown_flag)
+            thread = TaskRunner(self.tsk_queue, self.jobs, self.shutdown_flag, self.webserver)
             thread.start()
             self.thr_list.append(thread)
 
+    def graceful_shutdown(self):
+        """
+        Function for the graceful shutdown call
+        """
+        self.shutdown_flag.set()
+
+        for thread in self.thr_list:
+            thread.join()
+
 class TaskRunner(Thread):
-    def __init__(self, tsk_queue, jobs, shutdown_flag):
+    def __init__(self, tsk_queue, jobs, shutdown_flag, webserver):
         Thread.__init__(self)
         self.tsk_queue = tsk_queue
         self.jobs = jobs
         self.shutdown_flag = shutdown_flag
+        self.webserver = webserver
 
     def run(self):
         while True:
@@ -84,12 +96,15 @@ class TaskRunner(Thread):
         elif task.url == '/api/state_mean_by_category':
             self.calculate_state_mean_by_category(task)
 
-    def write_in_file(self, data, task_id):
+    def write_in_file(self, data, task_id, task_url):
         """
         Function used for writing in the ./results/job_id_{task_id}.json so that we don't
         rewrite the same 3 lines
         """
-        with open(f"./results/job_id_{task_id}.json", 'w') as file:
+        self.webserver.logger.info("Job id: " + str(task_id) + "\n" +
+                           "User's requested: " + str(task_url) + "\n" +
+                           "With data: " + str(data))
+        with open(f"./results/job_id_{task_id}.json", "w", encoding="utf-8") as file:
             json.dump(data, file)
         self.jobs[task_id] = "done"
 
@@ -102,7 +117,7 @@ class TaskRunner(Thread):
         with a status indication; otherwise, the calculated global mean is returned (used for 
         calculate_diff_from_mean and calculate_state_diff_from_mean functions)
         """
-        val = task.data_value
+        val = task.data_value.data
         s = 0
         count = 0
         for line in val:
@@ -110,16 +125,19 @@ class TaskRunner(Thread):
                 s += float(line['Data_Value'])
                 count += 1
 
+        if task.is_unittesting is True and task.url == '/api/global_mean':
+            return {"global_mean": s / count}
+
         if task.url == '/api/global_mean':
             # Write result in the designed file
-            self.write_in_file({'status': 'done', 'data': {"global_mean": s / count}},
-                task.task_id)
+            self.write_in_file({'status': 'done', 'data': {"global_mean": s / count}}, task.task_id, task.url)
         else:
             return s / count
 
     def calculate_worst5(self, task):
         """
-        Function used for the worst_5 request that calculates the worst 5 states based on the data.
+        Function used for the worst_5 request that retrieves the worst 5 states (sorted by mean) 
+        based on a specified question.
         Function accumulates data for each state, calculates the average value, sorts the states 
         based on the averages, and then selects the worst 5 states. The result is stored in the 
         task's file with a status indication.
@@ -127,10 +145,11 @@ class TaskRunner(Thread):
         """
         val = task.data_value.data
         finished_data = {}
+        question = task.question['question']
 
         # Accumulate data for each state
         for line in val:
-            if line['Question'] == task.question:
+            if line['Question'] == question:
                 state = line['LocationDesc']
                 data_val = float(line['Data_Value'])
                 if state not in finished_data:
@@ -144,7 +163,7 @@ class TaskRunner(Thread):
             finished_data[state] = data['total_value'] / data['count']
 
         # Sort states based on average values
-        if task.question in task.data_value.questions_best_is_max:
+        if question in task.data_value.questions_best_is_max:
             sorted_avg = dict(sorted(finished_data.items(), key=lambda x: x[1]))
         else:
             sorted_avg = dict(sorted(finished_data.items(), key=lambda x: x[1], reverse=True))
@@ -152,12 +171,16 @@ class TaskRunner(Thread):
         # Get the worst 5 states
         worst5 = dict(list(sorted_avg.items())[:5])
 
+        if task.is_unittesting is True:
+            return worst5
+
         # Write result in the designed file
-        self.write_in_file ({'status': 'done', 'data': worst5}, task.task_id)
+        self.write_in_file ({'status': 'done', 'data': worst5}, task.task_id, task.url)
 
     def calculate_best5(self, task):
         """
-        Function used for the best_5 request that calculates the best 5 states based on the data.
+        Function used for the best_5 request that retrieves the best 5 states (sorted by mean) 
+        based on a specified question.
         Function accumulates data for each state, calculates the average value, sorts the states 
         based on the averages, and then selects the best 5 states. The result is stored in the 
         task's file with a status indication.
@@ -165,10 +188,11 @@ class TaskRunner(Thread):
         """
         val = task.data_value.data
         finished_data = {}
+        question = task.question['question']
 
         # Accumulate data for each state
         for line in val:
-            if line['Question'] == task.question:
+            if line['Question'] == question:
                 state = line['LocationDesc']
                 data_val = float(line['Data_Value'])
                 if state not in finished_data:
@@ -182,7 +206,7 @@ class TaskRunner(Thread):
             finished_data[state] = data['total_value'] / data['count']
 
         # Sort states based on average values
-        if task.question in task.data_value.questions_best_is_min:
+        if question in task.data_value.questions_best_is_min:
             sorted_avg = dict(sorted(finished_data.items(), key=lambda x: x[1]))
         else:
             sorted_avg = dict(sorted(finished_data.items(), key=lambda x: x[1], reverse=True))
@@ -190,8 +214,11 @@ class TaskRunner(Thread):
         # Get the best 5 states
         best5 = dict(list(sorted_avg.items())[:5])
 
+        if task.is_unittesting is True:
+            return best5
+
         # Write result in the designed file
-        self.write_in_file ({'status': 'done', 'data': best5}, task.task_id)
+        self.write_in_file ({'status': 'done', 'data': best5}, task.task_id, task.url)
 
     def calculate_states_mean(self, task):
         """
@@ -221,9 +248,12 @@ class TaskRunner(Thread):
         # Sort states based on average values
         sorted_avg = dict(sorted(finished_data.items(), key=lambda x: x[1]))
 
+        if task.is_unittesting is True and task.url == '/api/states_mean':
+            return sorted_avg
+
         if task.url == '/api/states_mean':
             # Write result in the designed file
-            self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id)
+            self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id, task.url)
 
         return sorted_avg
 
@@ -237,7 +267,7 @@ class TaskRunner(Thread):
         Otherwise, the calculated mean value for the state is returned (used for 
         calculate_state_diff_from_mean function).
         """
-        val = task.data_value
+        val = task.data_value.data
         state = task.question['state']
         s = 0
         count = 0
@@ -247,9 +277,12 @@ class TaskRunner(Thread):
                 s += float(line['Data_Value'])
                 count += 1
 
+        if task.is_unittesting is True and task.url == '/api/state_mean':
+            return {state: s / count}
+
         if task.url == '/api/state_mean':
             # Write result in the designed file
-            self.write_in_file({'status': 'done', 'data': {state: s / count}}, task.task_id)
+            self.write_in_file({'status': 'done', 'data': {state: s / count}}, task.task_id, task.url)
         else:
             return s / count
 
@@ -267,7 +300,6 @@ class TaskRunner(Thread):
         data = self.calculate_states_mean(task)
 
         # Calculate global mean
-        task.data_value = task.data_value.data
         glb_mean = self.calculate_global_mean(task)
 
         # Calculate difference from global mean for each state
@@ -275,8 +307,11 @@ class TaskRunner(Thread):
             data[state] = glb_mean - data[state]
         sorted_avg = dict(sorted(data.items(), key=lambda x: x[1], reverse=True))
 
+        if task.is_unittesting is True:
+            return sorted_avg
+
         # Write result in the designed file
-        self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id)
+        self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id, task.url)
 
     def calculate_state_diff_from_mean(self, task):
         """
@@ -290,8 +325,12 @@ class TaskRunner(Thread):
         glb_mean = self.calculate_global_mean(task)
         st_mean = self.calculate_state_mean(task)
         avg = glb_mean - st_mean
+
+        if task.is_unittesting is True:
+            return {state: avg}
+
         # Write result in the designed file
-        self.write_in_file({'status': 'done', 'data': {state: avg}}, task.task_id)
+        self.write_in_file({'status': 'done', 'data': {state: avg}}, task.task_id, task.url)
 
     def calculate_mean_by_category(self, task):
         """
@@ -303,11 +342,13 @@ class TaskRunner(Thread):
         ascending order and by average in descending order. The results are stored in the designed
         file.
         """
-        val = task.data_value
+        val = task.data_value.data
         finished_data = {}
+        question = task.question['question']
+
         # Accumulate data for each state
         for line in val:
-            if line['Question'] == task.question:
+            if line['Question'] == question:
                 state = line['LocationDesc']
                 category = line['StratificationCategory1']
                 subcat = line['Stratification1']
@@ -325,8 +366,12 @@ class TaskRunner(Thread):
             finished_data[key_val] = data['total_value'] / data['count']
         # Create a dictionary sorted by state in ascending order and average in descending order
         sorted_avg =  dict(sorted(finished_data.items(), key=lambda x: (x[0], -x[1])))
+
+        if task.is_unittesting is True:
+            return sorted_avg
+
         # Write result in the designed file
-        self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id)
+        self.write_in_file({'status': 'done', 'data': sorted_avg}, task.task_id, task.url)
 
     def calculate_state_mean_by_category(self, task):
         """
@@ -341,7 +386,7 @@ class TaskRunner(Thread):
         in the designed file.
         """
         state = task.question['state']
-        val = task.data_value
+        val = task.data_value.data
         finished_data = {}
 
         # Accumulate data for each state
@@ -361,5 +406,9 @@ class TaskRunner(Thread):
         for key_val, data in finished_data.items():
             finished_data[key_val] = data['total_value'] / data['count']
         sorted_avg = dict(sorted(finished_data.items(), key=lambda x: (x[0], -x[1])))
+
+        if task.is_unittesting is True:
+            return {state: sorted_avg}
+
         # Write result in the designed file
-        self.write_in_file({'status': 'done', 'data': {state: sorted_avg}}, task.task_id)
+        self.write_in_file({'status': 'done', 'data': {state: sorted_avg}}, task.task_id, task.url)
